@@ -36,14 +36,14 @@ public class MainControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void testCreateQuiz(){
+    public void testCreateQuiz() {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> requestEntity = new HttpEntity<>("{\"id\":null,\"description\":\"test quiz\",\"questions\":[{\"type\":\"variant_question\",\"variants\":[{\"id\":null,\"question\":null,\"description\":\"variant description\"}]}]}\n",headers);
+        HttpEntity<String> requestEntity = new HttpEntity<>("{\"id\":null,\"description\":\"test quiz\",\"questions\":[{\"type\":\"variant_question\",\"variants\":[{\"id\":null,\"question\":null,\"description\":\"variant description\"}]}]}\n", headers);
 
         String url = "http://localhost:" + port + "/create";
-        Map exchange = this.restTemplate.postForObject(url,requestEntity,Map.class);
+        Map exchange = this.restTemplate.postForObject(url, requestEntity, Map.class);
         String id = (String) exchange.get("id");
 
         assertNotNull(id);
@@ -51,7 +51,7 @@ public class MainControllerTest {
         url = "http://localhost:" + port + "/getDescription?id=" + id;
         String forObject = this.restTemplate.getForObject(url, String.class);
 
-        assertEquals(forObject,"test quiz");
+        assertEquals(forObject, "test quiz");
     }
 
     @Test
@@ -71,8 +71,13 @@ public class MainControllerTest {
 
         System.out.println(quiz.toString());
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(new BufferedWriter(new StringWriter()),quiz);
-        System.out.println("------------------ \n" + mapper.writeValueAsString(quiz));
+        mapper.writeValue(new BufferedWriter(new StringWriter()), quiz);
+        System.out.println("------------------ \n"
+                + "------------------ \n"
+                + "------------------ \n"
+                + mapper.writeValueAsString(quiz)
+                + "------------------ \n"
+                + "------------------ \n");
     }
 
 }

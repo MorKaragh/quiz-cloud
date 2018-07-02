@@ -42,4 +42,10 @@ public class MainController {
         return new ResponseEntity<>(description, HttpStatus.OK);
     }
 
+
+    @RequestMapping(method = RequestMethod.GET, value = {"/ping"})
+    public ResponseEntity<String> ping(){
+        return new ResponseEntity<>("pong!", HttpStatus.OK);
+    }
+
 }
